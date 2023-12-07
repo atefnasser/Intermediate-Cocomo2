@@ -8,9 +8,8 @@ const About = () => {
         <div className="about-container">
             <h1>About Us</h1>
             <p>
-                This is the about page for our application, where we describe the purpose
-                and background of our project. Here you can include information about the 
-                COCOMO II model and how this app helps users to estimate software development cost.
+            The Intermediate COCOMO II model, an extension of the basic COCOMO model, is used for software cost estimation. This model takes into account various factors that influence the cost, duration, and effort of software development
+
             </p>
             {/* Add more content as needed */}
         </div>

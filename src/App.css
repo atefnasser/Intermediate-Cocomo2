@@ -11,3 +11,16 @@
     min-height: 0; /* This ensures that flex children can be smaller than the flex container */
   }
   
+  /* App.css or sidebar.css */
+.toggle-sidebar-btn {
+    font-size: 20px; /* Adjust the font size as needed */
+    padding: 10px; /* Adjust the padding as needed */
+  }
+  
+  .sidebar.closed {
+  display: none; /* Or transform off-screen, etc. */
+}
+
+.sidebar.open {
+  display: block; /* Or transform on-screen, etc. */
+}
