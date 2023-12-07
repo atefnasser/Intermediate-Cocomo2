@@ -7,7 +7,7 @@ function Toolbar() {
     return (
         <AppBar position="static" id="main-toolbar-outer">
             <MuiToolbar>
-                <Typography variant='h4'>Intermediate COCOMO 2 Calculator</ Typography>
+                <Typography variant='h4'>Intermediate COCOMO II Calculator</ Typography>
             </MuiToolbar>
         </AppBar>
     );
