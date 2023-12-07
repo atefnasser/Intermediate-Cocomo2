@@ -1,0 +1,57 @@
+/* src/components/sidebar.css */
+/* src/components/sidebar.css */
+
+.sidebar {
+    width: 225px; /* Increase the width as needed */
+    background-color: #ffffff; /* Light gray background */
+    /* Other styling as needed */
+    padding-top: 117px; /* Add padding to the top to move the text down */
+    font-size: 1.25rem; /* Increase font size */
+  }
+  
+  /* Adjust the .nav-item or equivalent class to center the text if needed */
+  .nav-item {
+    /* Other styling */
+    text-align: center; /* Center the text horizontally */
+    padding: 10px 15px; /* Adjust padding to increase hit area and spacing */
+  }
+  
+  /* You may want to add a hover effect to your nav items */
+  .nav-item:hover {
+    background-color: #e1e1e1; /* Slightly darker gray for hover state */
+  }
+  
+  /* Adjust active class for the nav item if using one */
+  .nav-item.active {
+    background-color: #dcdcdc; /* Different shade for active state */
+    /* Other styling as needed */
+  }
+  
+  
+  .sidebar-content {
+    padding: 1rem;
+  }
+  
+  .nav-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333; /* Color for the text */
+    text-decoration: none; /* Removes underline from links */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+  }
+  
+  .nav-item:hover {
+    background-color: #f3f3f3; /* Color change on hover */
+  }
+  
+  .nav-item.active {
+    background-color: #f3f3f3; /* Color for the active item, change as needed */
+    color: #333; /* Color for the active text, change as needed */
+    font-weight: bold; /* Make active link bold */
+  }
+  .sidebar .nav-item {
+    padding-top: 20px; /* Adjust the value as needed */
+    display: block; /* This makes each link block-level, which means it will take up the full width of the sidebar */
+    /* other styles */
+  }
+  

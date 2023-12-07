@@ -1,0 +1,12 @@
+/* src/pages/about/About.css */
+
+.about-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.about-container h1 {
+    margin-bottom: 20px;
+}
+
+/* Add more styling as needed */

@@ -1,44 +1,22 @@
-import BackIcon from '@mui/icons-material/ArrowBackIos';
-import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-
-const drawerWidth = 240;
+// src/components/Sidebar.tsx
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './sidebar.css'; // Ensure this file exists and is correctly linked
 
 const Sidebar = () => {
-    const theme = useTheme();
     return (
-        <Drawer
-            variant="persistent"
-            anchor='left'
-            open={true}
-            sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                    width: drawerWidth,
-                    boxSizing: 'border-box',
-                },
-            }}
-        >
-            <Toolbar className='h-16 flex justify-end' style={{ backgroundColor: theme.palette.primary.main }}>
-                <IconButton style={{ color: theme.palette.primary.contrastText }}><BackIcon /></IconButton>
-            </Toolbar>
-            <Divider />
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItemButton key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                ))}
-            </List>
-        </Drawer>
+        <aside className="sidebar" aria-label="Sidebar">
+            <div className="sidebar-content">
+                <NavLink to="/" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                    Home
+                </NavLink>
+                <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                    About
+                </NavLink>
+                {/* Add more NavLink components for additional navigation items */}
+            </div>
+        </aside>
     );
 };
 
 export default Sidebar;
-s

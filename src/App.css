@@ -1,0 +1,13 @@
+/* src/App.css */
+
+.app-container {
+    min-height: 100vh; /* Full viewport height */
+    position: relative; /* Relative positioning for the footer */
+    padding-bottom: 50px; /* Give some space at the bottom for the footer */
+  }
+  
+  /* App.css */
+.flex-1 {
+    min-height: 0; /* This ensures that flex children can be smaller than the flex container */
+  }
+  

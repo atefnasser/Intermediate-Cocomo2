@@ -171,7 +171,8 @@ const handleSubmit = () => {
 
   return (
     <div className="p-8">
-      
+
+
       {/* Project Size Input */}
       <div className="mb-8">
         <label htmlFor="project-size" className="block text-xl font-medium text-gray-700 mb-2">
@@ -186,6 +187,7 @@ const handleSubmit = () => {
           onChange={(e) => setProjectSize(e.target.value)}
         />
       </div>
+      
       
       {/* Scale Factors Table */}
       <div className="mb-8">

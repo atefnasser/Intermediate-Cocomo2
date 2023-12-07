@@ -1,0 +1,12 @@
+/* src/components/footer-style.css */
+
+.footer {
+    width: 100%;
+    padding: 20px;
+    background-color: #333; /* Dark background for the footer */
+    color: #fff; /* White text color */
+    text-align: center; /* Center the text */
+    position: relative;
+    bottom: 0;
+    left: 0;
+  }
