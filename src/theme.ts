@@ -3,15 +3,15 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#4CAF50", // Green
-      light: "#81C784", // Light Green
-      dark: "#388E3C", // Dark Green
+      main: "#92BED3", // Green
+      light: "#92BED3", // Light Green
+      dark: "#92BED3", // Dark Green
       contrastText: "#FFFFFF", // White for contrast
     },
     secondary: {
-      main: "#29B6F6",
-      light: "#53C4F7",
-      dark: "#1C7FAC",
+      main: "#92BED3",
+      light: "#92BED3",
+      dark: "#92BED3",
       contrastText: "rgba(0, 0, 0, 0.87)",
     },
     
@@ -22,6 +22,8 @@ const theme = createTheme({
             variant: 'standard',
         }
     }
+
+    
     
   }
 });

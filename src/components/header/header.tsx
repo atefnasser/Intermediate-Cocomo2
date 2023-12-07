@@ -1,16 +1,23 @@
-import { AppBar, Typography } from "@mui/material";
+// header.tsx
+import React from 'react';
+import { AppBar, Typography, Toolbar } from "@mui/material";
 import "./header-style.css";
-import MuiToolbar from '@mui/material/Toolbar';
 
+function Header() {
+    const typographyStyles = {
+        fontSize: '60px', // Adjust the font size as needed
+        fontWeight: 500, // Adjust the font weight as needed
+    };
 
-function Toolbar() {
     return (
         <AppBar position="static" id="main-toolbar-outer">
-            <MuiToolbar>
-                <Typography variant='h4'>Intermediate COCOMO II Calculator</ Typography>
-            </MuiToolbar>
+            <Toolbar>
+                <Typography variant='h4' style={typographyStyles}>
+                    Intermediate COCOMO II Calculator
+                </Typography>
+            </Toolbar>
         </AppBar>
     );
 }
 
-export default Toolbar;
+export default Header;

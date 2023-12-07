@@ -237,10 +237,11 @@ const handleSubmit = () => {
       {/* Calculate Button */}
       <div className="mt-6 flex justify-center">
         <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          style={{ backgroundColor: '#92BED3' }}
           onClick={handleSubmit}
         >
-          Calculate
+          Submit
         </button>
       </div>
   
