@@ -145,12 +145,11 @@ const handleSubmit = () => {
             checked={selections.scaleFactors[factor] === level}
             onChange={(e) => handleSelection('scaleFactors', factor, e.target.value)}
           />
-          {level}
         </label>
       </td>
     ));
   };
-
+  
   // Helper function to generate effort multiplier radio buttons
   const renderEffortMultiplierOptions = (multiplier) => {
     return options.map(level => (
@@ -163,7 +162,6 @@ const handleSubmit = () => {
             checked={selections.effortMultipliers[multiplier] === level}
             onChange={(e) => handleSelection('effortMultipliers', multiplier, e.target.value)}
           />
-          {level}
         </label>
       </td>
     ));
