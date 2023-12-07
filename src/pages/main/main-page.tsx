@@ -179,7 +179,6 @@ const D_constant = 0.28; // The exponent base for the Development Time Equation
 
   return (
     <div className="p-8">
-      <h1 className="text-5xl font-extrabold text-gray-900 mb-6">Intermediate COCOMO II Calculator</h1>
       
       {/* Project Size Input */}
       <div className="mb-8">
