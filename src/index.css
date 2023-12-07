@@ -4,3 +4,9 @@
 @tailwind utilities;
 
 /* Add any additional styles or overrides here */
+
+/* index.css */
+body {
+    background-color: #ffffff; /* Replace with your desired background color */
+  }
+  

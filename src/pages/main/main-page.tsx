@@ -175,7 +175,7 @@ const handleSubmit = () => {
       {/* Project Size Input */}
       <div className="mb-8">
         <label htmlFor="project-size" className="block text-xl font-medium text-gray-700 mb-2">
-          Project Size (KLOC)
+        <h2 className="text-3xl font-bold text-gray-700 mb-4">Project Size (KLOC)</h2>
         </label>
         <input
           type="number"
