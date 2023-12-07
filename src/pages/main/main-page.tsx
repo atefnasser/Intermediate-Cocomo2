@@ -132,12 +132,6 @@ const handleSubmit = () => {
 
   const options = ['Very Low', 'Low', 'Average', 'High', 'Very High'];
 
-  const A = 2.94; // The multiplicative constant for Effort
-const B = 0.91; // The exponent base for the Effort Equation
-const C = 3.67; // The multiplicative constant for Development Time
-const D_constant = 0.28; // The exponent base for the Development Time Equation
-
-
 
   // Helper function to generate scale factor radio buttons
   const renderScaleFactorOptions = (factor) => {
