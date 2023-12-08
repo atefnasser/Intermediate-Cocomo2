@@ -1,0 +1,20 @@
+/* NavBar.css */
+.nav-bar {
+    background-color: #f8f8f8; /* Light gray background */
+    display: flex;
+    justify-content: space-around; /* Space out the nav items evenly */
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link {
+    color: #333; /* Dark text for links */
+    padding: 0.5rem 1rem;
+    text-decoration: none; /* No underline */
+    transition: color 0.3s ease; /* Smooth color transition for hover */
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #026aa7; /* Change color on hover/active */
+  }
+  
