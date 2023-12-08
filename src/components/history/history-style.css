@@ -1,0 +1,40 @@
+/* HistoryPage.css */
+.history-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust as needed */
+    justify-content: space-evenly; /* This will space your history entries evenly */
+  }
+  
+  .history-entry {
+    width: calc(33.333% - 40px); /* Adjust the width to account for the gap */
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjust as needed */
+  }
+  
+  .table-section,
+  .calculation-section {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px;
+  }
+  
+  .table-section h3,
+  .calculation-section h3 {
+    margin-top: 0;
+  }
+  
+  /* Adjustments for responsiveness */
+  @media (max-width: 768px) {
+    .history-entry {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  

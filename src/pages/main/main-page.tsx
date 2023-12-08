@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
+import { useHistory } from '../../components/history/HistoryContext';
 
 const MainPage = () => {
-  // Initialize selections state with default 'Nominal' values
+  // Initialize selections state with default 'Average' values
   const [selections, setSelections] = useState({
     scaleFactors: {
-      'PREC': 'Nominal',
-      'FLEX': 'Nominal',
-      'RESL': 'Nominal',
-      'TEAM': 'Nominal',
-      'PMAT': 'Nominal'
+      'Project Familiarity': 'Average',
+      'Development Flexibility': 'Average',
+      'Risk Management': 'Average',
+      'Teamwork Quality': 'Average',
+      'Process Experience': 'Average'
     },
     effortMultipliers: {
-      'RELY': 'Nominal',
-      'DATA': 'Nominal',
-      'CPLX': 'Nominal',
-      'RUSE': 'Nominal',
-      'DOCU': 'Nominal',
-      'TIME': 'Nominal',
-      'STOR': 'Nominal',
-      'PVOL': 'Nominal',
-      'ACAP': 'Nominal',
-      'PCAP': 'Nominal',
-      'PCON': 'Nominal',
-      'APEX': 'Nominal',
-      'PLEX': 'Nominal',
-      'LTEX': 'Nominal',
-      'TOOL': 'Nominal',
-      'SITE': 'Nominal',
-      'SCED': 'Nominal'
+      'Reliability Need': 'Average',
+      'Database Size': 'Average',
+      'Complexity Level': 'Average',
+      'Reusability Requirement': 'Average',
+      'Documentation Need': 'Average',
+      'Performance Constraint': 'Average',
+      'Memory Usage': 'Average',
+      'Platform Stability': 'Average',
+      'Analyst Skill': 'Average',
+      'Programmer Skill': 'Average',
+      'Team Stability': 'Average',
+      'App Experience': 'Average',
+      'Platform Experience': 'Average',
+      'Tech Tool Proficiency': 'Average',
+      'Use of Software Tools': 'Average',
+      'Multisite Development': 'Average',
+      'Required Development Schedule': 'Average'
     }
   });
 
@@ -36,37 +37,40 @@ const MainPage = () => {
   const [effort, setEffort] = useState(0);
   const [deploymentTime, setDeploymentTime] = useState(0);
   const [staffing, setStaffing] = useState(0);
+  const [costPerPersonMonth, setCostPerPersonMonth] = useState(1000); // Example default value
+  const [totalCost, setTotalCost] = useState(0);
 
   // Scale factors and effort multipliers (same as provided by you)
 const SFs = {
-    'Project Familiarity': { 'Very Low': 6.20, 'Low': 4.96, 'Nominal': 3.72, 'High': 2.48, 'Very High': 1.24 },
-    'Development Flexibility': { 'Very Low': 5.07, 'Low': 4.05, 'Nominal': 3.04, 'High': 2.03, 'Very High': 1.01 },
-    'Risk Management': { 'Very Low': 7.07, 'Low': 5.65, 'Nominal': 4.24, 'High': 2.83, 'Very High': 1.41 },
-    'Teamwork Quality': { 'Very Low': 5.48, 'Low': 4.38, 'Nominal': 3.29, 'High': 2.19, 'Very High': 1.10 },
-    'Process Experience': { 'Very Low': 7.80, 'Low': 6.24, 'Nominal': 4.68, 'High': 3.12, 'Very High': 1.56 }
+    'Project Familiarity': { 'Very Low': 6.20, 'Low': 4.96, 'Average': 3.72, 'High': 2.48, 'Very High': 1.24 },
+    'Development Flexibility': { 'Very Low': 5.07, 'Low': 4.05, 'Average': 3.04, 'High': 2.03, 'Very High': 1.01 },
+    'Risk Management': { 'Very Low': 7.07, 'Low': 5.65, 'Average': 4.24, 'High': 2.83, 'Very High': 1.41 },
+    'Teamwork Quality': { 'Very Low': 5.48, 'Low': 4.38, 'Average': 3.29, 'High': 2.19, 'Very High': 1.10 },
+    'Process Experience': { 'Very Low': 7.80, 'Low': 6.24, 'Average': 4.68, 'High': 3.12, 'Very High': 1.56 }
   };
 
   const EMs = {
-    'Reliability Need': { 'Very Low': 0.82, 'Low': 0.92, 'Nominal': 1.00, 'High': 1.10, 'Very High': 1.26 },
-    'Database Size': { 'Low': 0.90, 'Nominal': 1.00, 'High': 1.14, 'Very High': 1.28 },
-    'Complexity Level': { 'Very Low': 0.73, 'Low': 0.87, 'Nominal': 1.00, 'High': 1.17, 'Very High': 1.34 },
-    'Reusability Requirement': { 'Low': 0.95, 'Nominal': 1.00, 'High': 1.07, 'Very High': 1.15 },
-    'Documentation Need': { 'Very Low': 0.81, 'Low': 0.91, 'Nominal': 1.00, 'High': 1.11, 'Very High': 1.23 },
-    'Performance Constraint': { 'Nominal': 1.00, 'High': 1.11, 'Very High': 1.29, 'Extra High': 1.63 },
-    'Memory Usage': { 'Nominal': 1.00, 'High': 1.05, 'Very High': 1.17, 'Extra High': 1.46 },
-    'Platform Stability': { 'Low': 0.87, 'Nominal': 1.00, 'High': 1.15, 'Very High': 1.30 },
-    'Analyst Skill': { 'Very Low': 1.42, 'Low': 1.19, 'Nominal': 1.00, 'High': 0.85, 'Very High': 0.71 },
-    'Programmer Skill': { 'Very Low': 1.34, 'Low': 1.15, 'Nominal': 1.00, 'High': 0.88, 'Very High': 0.76 },
-    'Team Stability': { 'Very Low': 1.29, 'Low': 1.12, 'Nominal': 1.00, 'High': 0.90, 'Very High': 0.81 },
-    'App Experience': { 'Very Low': 1.22, 'Low': 1.10, 'Nominal': 1.00, 'High': 0.88, 'Very High': 0.81 },
-    'Platform Experience': { 'Very Low': 1.19, 'Low': 1.09, 'Nominal': 1.00, 'High': 0.91, 'Very High': 0.85 },
-    'Tech Tool Proficiency': { 'Very Low': 1.20, 'Low': 1.09, 'Nominal': 1.00, 'High': 0.91, 'Very High': 0.84 },
-    'Use of Software Tools': { 'Very Low': 1.17, 'Low': 1.09, 'Nominal': 1.00, 'High': 0.90, 'Very High': 0.78 },
-    'Multisite Development': { 'Very Low': 1.22, 'Low': 1.09, 'Nominal': 1.00, 'High': 0.93, 'Very High': 0.86 },
-    'Required Development Schedule': { 'Very Low': 1.43, 'Low': 1.14, 'Nominal': 1.00, 'High': 1.00, 'Very High': 1.00 }
+    'Reliability Need': { 'Very Low': 0.82, 'Low': 0.92, 'Average': 1.00, 'High': 1.10, 'Very High': 1.26 },
+    'Database Size': { 'Low': 0.90, 'Average': 1.00, 'High': 1.14, 'Very High': 1.28 },
+    'Complexity Level': { 'Very Low': 0.73, 'Low': 0.87, 'Average': 1.00, 'High': 1.17, 'Very High': 1.34 },
+    'Reusability Requirement': { 'Low': 0.95, 'Average': 1.00, 'High': 1.07, 'Very High': 1.15 },
+    'Documentation Need': { 'Very Low': 0.81, 'Low': 0.91, 'Average': 1.00, 'High': 1.11, 'Very High': 1.23 },
+    'Performance Constraint': { 'Average': 1.00, 'High': 1.11, 'Very High': 1.29, 'Extra High': 1.63 },
+    'Memory Usage': { 'Average': 1.00, 'High': 1.05, 'Very High': 1.17, 'Extra High': 1.46 },
+    'Platform Stability': { 'Low': 0.87, 'Average': 1.00, 'High': 1.15, 'Very High': 1.30 },
+    'Analyst Skill': { 'Very Low': 1.42, 'Low': 1.19, 'Average': 1.00, 'High': 0.85, 'Very High': 0.71 },
+    'Programmer Skill': { 'Very Low': 1.34, 'Low': 1.15, 'Average': 1.00, 'High': 0.88, 'Very High': 0.76 },
+    'Team Stability': { 'Very Low': 1.29, 'Low': 1.12, 'Average': 1.00, 'High': 0.90, 'Very High': 0.81 },
+    'App Experience': { 'Very Low': 1.22, 'Low': 1.10, 'Average': 1.00, 'High': 0.88, 'Very High': 0.81 },
+    'Platform Experience': { 'Very Low': 1.19, 'Low': 1.09, 'Average': 1.00, 'High': 0.91, 'Very High': 0.85 },
+    'Tech Tool Proficiency': { 'Very Low': 1.20, 'Low': 1.09, 'Average': 1.00, 'High': 0.91, 'Very High': 0.84 },
+    'Use of Software Tools': { 'Very Low': 1.17, 'Low': 1.09, 'Average': 1.00, 'High': 0.90, 'Very High': 0.78 },
+    'Multisite Development': { 'Very Low': 1.22, 'Low': 1.09, 'Average': 1.00, 'High': 0.93, 'Very High': 0.86 },
+    'Required Development Schedule': { 'Very Low': 1.43, 'Low': 1.14, 'Average': 1.00, 'High': 1.00, 'Very High': 1.00 }
   };
 
 
+  const { addHistoryEntry } = useHistory();
 
   // Handle selection for radio buttons
   const handleSelection = (category, factor, selectedOption) => {
@@ -118,14 +122,27 @@ const handleSubmit = () => {
     const calculatedEffort = A * Math.pow(sizeInKLOC, E) * productEM;
     const developmentTime = C * Math.pow(calculatedEffort, (D + 0.2 * (E - B)));
     const calculatedStaffing = calculatedEffort / developmentTime;
+    const calculatedCost = calculatedEffort * costPerPersonMonth;
   
     console.log('Calculated Effort:', calculatedEffort);
     console.log('Calculated Development Time:', developmentTime);
     console.log('Calculated Staffing:', calculatedStaffing);
+    console.log('Calculated Cost:', calculatedCost);
   
     setEffort(calculatedEffort);
     setDeploymentTime(developmentTime);
     setStaffing(calculatedStaffing);
+    setTotalCost(calculatedCost);
+
+    addHistoryEntry({
+      projectSize: sizeInKLOC,
+      scaleFactors: selections.scaleFactors,
+      effortMultipliers: selections.effortMultipliers,
+      effort: calculatedEffort,
+      developmentTime: developmentTime,
+      staffing: calculatedStaffing,
+      cost: calculatedCost // Add this line to include the cost in the history
+    });
   };
   
   
@@ -253,6 +270,7 @@ const handleSubmit = () => {
           <p>Effort: {effort.toFixed(2)} Person-Months</p>
           <p>Development Time: {deploymentTime.toFixed(2)} Months</p>
           <p>Staffing: {staffing.toFixed(2)} Persons</p>
+          <p>Cost: {totalCost.toFixed(2)} Dollars</p>
         </div>
       )}
     </div>
