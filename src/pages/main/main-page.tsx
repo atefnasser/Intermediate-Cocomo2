@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from '../../components/history/HistoryContext';
 
+
 const MainPage = () => {
   // Initialize selections state with default 'Average' values
   const [selections, setSelections] = useState({
@@ -37,7 +38,6 @@ const MainPage = () => {
   const [effort, setEffort] = useState(0);
   const [deploymentTime, setDeploymentTime] = useState(0);
   const [staffing, setStaffing] = useState(0);
-  const [costPerPersonMonth, setCostPerPersonMonth] = useState(1000); // Example default value
   const [totalCost, setTotalCost] = useState(0);
   const [annualWage, setAnnualWage] = useState('');
 
@@ -337,9 +337,9 @@ const MainPage = () => {
       {/* Results Display */}
       {effort !== null && (
         <div className="mt-4">
-          <p>Effort: {effort.toFixed(2)} Person-Months</p>
-          <p>Development Time: {deploymentTime.toFixed(2)} Months</p>
-          <p>Staffing: {staffing.toFixed(2)} Persons</p>
+          <p>Effort: {effort.toFixed(6)} Person-Months</p>
+          <p>Development Time: {deploymentTime.toFixed(6)} Months</p>
+          <p>Staffing: {staffing.toFixed(6)} Persons</p>
           <p>Estimated Cost: {totalCost.toFixed(2)} Dollars</p>
         </div>
       )}

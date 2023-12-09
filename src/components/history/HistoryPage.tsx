@@ -36,9 +36,9 @@ const HistoryPage = () => {
                 </div>
                 <div className="calculation-section">
                   <h3>Calculation</h3>
-                  <p>Effort: {entry.effort.toFixed(2)} Person-Months</p>
-                  <p>Development Time: {entry.developmentTime.toFixed(2)} Months</p>
-                  <p>Staffing: {entry.staffing.toFixed(2)} Persons</p>
+                  <p>Effort: {entry.effort.toFixed(6)} Person-Months</p>
+                  <p>Development Time: {entry.developmentTime.toFixed(6)} Months</p>
+                  <p>Staffing: {entry.staffing.toFixed(6)} Persons</p>
                   <p>Estimated Cost: {entry.cost.toFixed(2)} Dollars</p> 
                 </div>
               </div>
