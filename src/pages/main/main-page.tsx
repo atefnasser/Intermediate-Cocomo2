@@ -39,9 +39,10 @@ const MainPage = () => {
   const [staffing, setStaffing] = useState(0);
   const [costPerPersonMonth, setCostPerPersonMonth] = useState(1000); // Example default value
   const [totalCost, setTotalCost] = useState(0);
+  const [annualWage, setAnnualWage] = useState('');
 
   // Scale factors and effort multipliers (same as provided by you)
-const SFs = {
+  const SFs = {
     'Project Familiarity': { 'Very Low': 6.20, 'Low': 4.96, 'Average': 3.72, 'High': 2.48, 'Very High': 1.24 },
     'Development Flexibility': { 'Very Low': 5.07, 'Low': 4.05, 'Average': 3.04, 'High': 2.03, 'Very High': 1.01 },
     'Risk Management': { 'Very Low': 7.07, 'Low': 5.65, 'Average': 4.24, 'High': 2.83, 'Very High': 1.41 },
@@ -83,16 +84,25 @@ const SFs = {
     }));
   };
 
-const handleSubmit = () => {
+  const handleSubmit = () => {
     console.log('Submit clicked'); // To check if the function is called
-  
+
     // Ensure projectSize is a number
     const sizeInKLOC = parseFloat(projectSize);
     if (isNaN(sizeInKLOC)) {
       console.error('Project size is not a valid number');
       return;
     }
-  
+
+    const annualWageValue = parseFloat(annualWage);
+    if (isNaN(annualWageValue)) {
+      console.error('Annual wage is not a valid number');
+      return;
+    }
+    const monthlyWage = annualWageValue / 12;
+
+
+
     let sumSF = 0;
     Object.entries(selections['scaleFactors'] || {}).forEach(([factor, level]) => {
       const value = SFs[factor]?.[level];
@@ -102,7 +112,7 @@ const handleSubmit = () => {
         console.error(`Scale factor value for ${factor} at level ${level} is undefined`);
       }
     });
-  
+
     let productEM = 1;
     Object.entries(selections['effortMultipliers'] || {}).forEach(([multiplier, level]) => {
       const value = EMs[multiplier]?.[level];
@@ -112,40 +122,79 @@ const handleSubmit = () => {
         console.error(`Effort multiplier value for ${multiplier} at level ${level} is undefined`);
       }
     });
-  
+
+
+
     const A = 2.94;
     const B = 0.91;
     const C = 3.67;
     const D = 0.28;
-  
+
     const E = B + 0.01 * sumSF;
     const calculatedEffort = A * Math.pow(sizeInKLOC, E) * productEM;
     const developmentTime = C * Math.pow(calculatedEffort, (D + 0.2 * (E - B)));
     const calculatedStaffing = calculatedEffort / developmentTime;
-    const calculatedCost = calculatedEffort * costPerPersonMonth;
-  
+    const estimatedCost = calculatedEffort * monthlyWage;
+
     console.log('Calculated Effort:', calculatedEffort);
     console.log('Calculated Development Time:', developmentTime);
     console.log('Calculated Staffing:', calculatedStaffing);
-    console.log('Calculated Cost:', calculatedCost);
-  
+    console.log('Calculated Cost:', estimatedCost);
+
     setEffort(calculatedEffort);
     setDeploymentTime(developmentTime);
     setStaffing(calculatedStaffing);
-    setTotalCost(calculatedCost);
+    setTotalCost(estimatedCost);
 
     addHistoryEntry({
       projectSize: sizeInKLOC,
+      annualWage: annualWageValue,
       scaleFactors: selections.scaleFactors,
       effortMultipliers: selections.effortMultipliers,
       effort: calculatedEffort,
       developmentTime: developmentTime,
       staffing: calculatedStaffing,
-      cost: calculatedCost // Add this line to include the cost in the history
+      cost: estimatedCost // Add this line to include the cost in the history
     });
   };
-  
-  
+
+  const handleReset = () => {
+    // Resetting all the state variables to their default values
+    setSelections({
+      scaleFactors: {
+        'Project Familiarity': 'Average',
+        'Development Flexibility': 'Average',
+        'Risk Management': 'Average',
+        'Teamwork Quality': 'Average',
+        'Process Experience': 'Average'
+      },
+      effortMultipliers: {
+        'Reliability Need': 'Average',
+        'Database Size': 'Average',
+        'Complexity Level': 'Average',
+        'Reusability Requirement': 'Average',
+        'Documentation Need': 'Average',
+        'Performance Constraint': 'Average',
+        'Memory Usage': 'Average',
+        'Platform Stability': 'Average',
+        'Analyst Skill': 'Average',
+        'Programmer Skill': 'Average',
+        'Team Stability': 'Average',
+        'App Experience': 'Average',
+        'Platform Experience': 'Average',
+        'Tech Tool Proficiency': 'Average',
+        'Use of Software Tools': 'Average',
+        'Multisite Development': 'Average',
+        'Required Development Schedule': 'Average'
+      }
+    });
+    setProjectSize('');
+    setEffort(0);
+    setDeploymentTime(0);
+    setStaffing(0);
+    setTotalCost(0);
+    setAnnualWage('');
+  };
 
   const options = ['Very Low', 'Low', 'Average', 'High', 'Very High'];
 
@@ -166,7 +215,7 @@ const handleSubmit = () => {
       </td>
     ));
   };
-  
+
   // Helper function to generate effort multiplier radio buttons
   const renderEffortMultiplierOptions = (multiplier) => {
     return options.map(level => (
@@ -184,7 +233,7 @@ const handleSubmit = () => {
     ));
   };
 
-  
+
 
   return (
     <div className="p-8">
@@ -193,10 +242,10 @@ const handleSubmit = () => {
       {/* Project Size Input */}
       <div className="mb-8">
         <label htmlFor="project-size" className="block text-xl font-medium text-gray-700 mb-2">
-        <h2 className="text-3xl font-bold text-gray-700 mb-4">Project Size (KLOC)</h2>
+          <h2 className="text-3xl font-bold text-gray-700 mb-4">Project Size (KLOC)</h2>
         </label>
         <input
-          type="number"
+          type="text"
           id="project-size"
           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
           placeholder="Enter project size in KLOC"
@@ -204,8 +253,21 @@ const handleSubmit = () => {
           onChange={(e) => setProjectSize(e.target.value)}
         />
       </div>
-      
-      
+
+      <div className="mb-8">
+        <label htmlFor="project-size" className="block text-xl font-medium text-gray-700 mb-2">
+          <h2 className="text-3xl font-bold text-gray-700 mb-4">Annual Developer Wage</h2>
+        </label>
+        <input
+          type="text"
+          id="annual-wage"
+          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          placeholder="Enter annual developer wage"
+          value={annualWage}
+          onChange={(e) => setAnnualWage(e.target.value)}
+        />
+      </div>
+
       {/* Scale Factors Table */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-700 mb-4">Scale Factors</h2>
@@ -228,7 +290,7 @@ const handleSubmit = () => {
           </tbody>
         </table>
       </div>
-      
+
       {/* Effort Multipliers Table */}
       <div>
         <h2 className="text-3xl font-bold text-gray-700 mb-4">Effort Multipliers</h2>
@@ -262,20 +324,28 @@ const handleSubmit = () => {
         >
           Submit
         </button>
+        <button
+          className="ml-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          style={{ backgroundColor: '#F56565' }}
+          onClick={handleReset}
+        >
+          Reset
+        </button>
       </div>
-  
+
+
       {/* Results Display */}
       {effort !== null && (
         <div className="mt-4">
           <p>Effort: {effort.toFixed(2)} Person-Months</p>
           <p>Development Time: {deploymentTime.toFixed(2)} Months</p>
           <p>Staffing: {staffing.toFixed(2)} Persons</p>
-          <p>Cost: {totalCost.toFixed(2)} Dollars</p>
+          <p>Estimated Cost: {totalCost.toFixed(2)} Dollars</p>
         </div>
       )}
     </div>
   );
-  
+
 };
 
 export default MainPage;

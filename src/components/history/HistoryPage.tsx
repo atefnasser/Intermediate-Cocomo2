@@ -15,8 +15,8 @@ const HistoryPage = () => {
               <h2>Calculation {index + 1}</h2>
               <div className="table-container">
                 <div className="table-section">
-                  <h3>Project Size</h3>
-                  <p>{entry.projectSize} KLOC</p>
+                  <p>Project Size: {entry.projectSize} KLOC</p>
+                  <p>Average Annual Wage: ${entry.annualWage.toLocaleString()}</p> 
                 </div>
                 <div className="table-section">
                   <h3>Scale Factors</h3>

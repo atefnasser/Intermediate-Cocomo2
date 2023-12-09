@@ -37,4 +37,9 @@
       width: 100%; /* Full width on smaller screens */
     }
   }
+
+  .history-entry h3 {
+    font-size: 1em; /* Adjust the size as you prefer */
+    font-weight: bold; /* This will make the text bold */
+  }
   
