@@ -1,46 +1,42 @@
-// HelpPage.tsx
-
 import React from 'react';
 
 const HelpPage: React.FC = () => {
     return (
       <div className="help-page-container" style={{ padding: '20px' }}>
         {/* Main Title */}
-        <h1 style={{ textAlign: 'center', fontSize: '2.5em', fontWeight: 'bold' }}>Understanding Each Scale Factors and Effort Multipliers</h1>
+        <h1 style={{ textAlign: 'center', fontSize: '2.5em', fontWeight: 'bold' }}>Understanding Each Scale Factor and Effort Multiplier</h1>
 
       <section>
       <h2 style={{ fontSize: '2em', fontWeight: 'bold' }}>Scale Factors</h2>
         <ul>
-          <li><strong>Project Familiarity:</strong> Measures how familiar the team is with the type of project being undertaken. Higher familiarity often leads to better estimates and project execution.</li>
-          <li><strong>Development Flexibility:</strong> How flexible the development process is is related. How much time and resources are needed can change when you have more flexibility.</li>
-          <li><strong>Risk Management:</strong> Looks at how well strategies for finding risks and reducing them are working. Surprising delays and costs can be avoided with good risk management.</li>
-          <li><strong>Teamwork Quality:</strong> Shows how well the team works together and talks to each other. Good teamwork can make things run more smoothly and help solve problems faster.</li>
-          <li><strong>Process Experience:</strong> Describes how familiar the team is with the method or process being used for the project.</li>
-          {/* Add additional scale factors as needed */}
+          <li><strong>Precedentedness (PREC):</strong> Measures how familiar the team is with the type of project being undertaken. Higher familiarity often leads to better estimates and project execution.</li>
+          <li><strong>Development Flexibility (FLEX):</strong> Flexibility of the development process. More flexibility can lead to less predictable time and resource requirements.</li>
+          <li><strong>Architecture/Risk Resolution (RESL):</strong> Assesses the efficacy of risk identification and mitigation strategies. Effective risk management can prevent unexpected delays and costs.</li>
+          <li><strong>Team Cohesion (TEAM):</strong> Indicates how well the project team communicates and works together. Cohesive teams can resolve issues more efficiently.</li>
+          <li><strong>Process Maturity (PMAT):</strong> Reflects the team's familiarity with the process or methodology used for the project.</li>
         </ul>
       </section>
 
       <section>
       <h2 style={{ fontSize: '2em', fontWeight: 'bold' }}>Effort Multipliers</h2>
         <ul>
-          <li><strong>Reliability Need:</strong> The level of how reliable and error-free the software needs to be. Needs for higher reliability can make development take longer and cost more.</li>
-          <li><strong>Database Size:</strong> This number tells you how much data the software can handle. Having bigger databases can make things more complicated and slow down operations.</li>
-          <li><strong>Complexity Level:</strong> Calculates how hard the project is to do properly.  Complex problems usually take longer and need more skilled workers.</li>
-          <li><strong>Reusability Requirement:</strong> Indicates if the software or its components are intended to be reusable in other projects.</li>
-          <li><strong>Documentation Need:</strong> Exactly how much detailed documentation is needed. Detail-oriented documents may need more time and resources.</li>
-          <li><strong>Performance Constraint:</strong> Limits on how well the software works, like how fast it responds or processes information, etc.</li>
-          <li><strong>Memory Usage:</strong> Estimates about how much memory the software will need. Using a lot of memory can slow things down and make hardware requirements more strict.</li>
-          <li><strong>Platform Stability:</strong> Checks to see how stable and developed the platform(s) are that the software will run on.</li>
-          <li><strong>Analyst Skill:</strong> The level of skill and expertise of the analysts involved in the project.</li>
-          <li><strong>Programmer Skill:</strong> The skill level of the programmers or developers working on the project.</li>
-          <li><strong>Team Stability:</strong> Refers to how stable the team's members are. Changing the people on a team often can make it harder to keep working on a project.</li>
-          <li><strong>App Experience:</strong> The team's experience with the specific application domain of the project.</li>
-          <li><strong>Platform Experience:</strong> Measures the team’s familiarity with the platform(s) used for development.</li>
-          <li><strong>Tech Tool Proficiency:</strong> How well the team can use the technical tools that are needed for the project.</li>
-          <li><strong>Use of Software Tools:</strong> The extent to which software tools are employed in the development process.</li>
-          <li><strong>Multisite Development:</strong> Involves projects being developed across multiple locations, which can add complexity and communication challenges.</li>
-          <li><strong>Required Development Schedule:</strong> The time frame within which the project needs to be completed. Tighter schedules can increase pressure and potentially impact quality.</li>
-          {/* Add additional effort multipliers as needed */}
+          <li><strong>Required Software Reliability (RELY):</strong> The level of stability and freedom from bugs required in the software. Higher reliability demands can increase development time and cost.</li>
+          <li><strong>Data Base Size (DATA):</strong> The size of the database the software must handle. Larger databases can increase complexity and processing time.</li>
+          <li><strong>Product Complexity (CPLX):</strong> Measures the complexity of the project. More complex projects usually require more time and skilled personnel.</li>
+          <li><strong>Developed for Reusability (RUSE):</strong> Indicates if the software or its components are intended to be reusable in other projects.</li>
+          <li><strong>Documentation Match to Life-Cycle Needs (DOCU):</strong> The level of detailed documentation required. More detailed documentation may require additional time and resources.</li>
+          <li><strong>Execution Time Constraint (TIME):</strong> Constraints on the software's operational performance, such as speed of response or processing times.</li>
+          <li><strong>Main Storage Constraint (STOR):</strong> Estimates the amount of memory the software will require. High memory usage can impose more stringent hardware requirements.</li>
+          <li><strong>Platform Volatility (PVOL):</strong> Assesses how stable and mature the platforms are that the software will run on.</li>
+          <li><strong>Analyst Capability (ACAP):</strong> The skill level and expertise of the analysts involved in the project.</li>
+          <li><strong>Programmer Capability (PCAP):</strong> The capability of the programmers or developers working on the project.</li>
+          <li><strong>Personnel Continuity (PCON):</strong> Measures the stability of the project team. Frequent staff turnover can disrupt project continuity.</li>
+          <li><strong>Applications Experience (APEX):</strong> The team's experience with the specific application domain of the project.</li>
+          <li><strong>Platform Experience (PLEX):</strong> The team’s familiarity with the platform(s) used for development.</li>
+          <li><strong>Language and Tool Experience (LTEX):</strong> How well the team can use the technical tools that are necessary for the project.</li>
+          <li><strong>Use of Software Tools (TOOL):</strong> The extent to which software tools are employed in the development process.</li>
+          <li><strong>Multisite Development (SITE):</strong> Involves projects being developed across multiple locations, which can add complexity and communication challenges.</li>
+          <li><strong>Required Development Schedule (SCED):</strong> The timeframe within which the project needs to be completed. Tighter schedules can increase pressure and potentially impact quality.</li>
         </ul>
       </section>
     </div>
